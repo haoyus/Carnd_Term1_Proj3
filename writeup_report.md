@@ -86,11 +86,15 @@ For details about how I processed the training data, see the next section.
 The overall strategy for deriving a model architecture was to chose an easy start and improve step by step.
 
 My first step was to use LeNet which was implemented in the previous project. I thought this model might be appropriate because it was intended for recognizing traffic signs. However, it didn't work well, partly because the architecture was intented to classify different classes, not to give continuous steering output, partly because the training data was not sufficient (I simply drove in the center of the road to collect data). The collected images look like this:
+
 ![alt text][image3]
+
 The car goes out of the track immediately.
 
 To get a better performance, I changed the model to Nvidia's architecture provided in the instructions. Along with this, I collected more data, especially for curved sections. The curve road data looked like:
+
 ![alt text][image7]
+
 I also augmented the data by flipping the images and corresponding steering angles:
 ```python
 for image, measurement in zip(images, measurements):
@@ -103,8 +107,11 @@ for image, measurement in zip(images, measurements):
 Then I trained the model and tested in the simulator, still not good. The car goes out of the track on sharp curves due to insufficient steering inputs. I collected more data on the curves for training, but still didn't help. Then I realized I must use some other techniques.
 
 So first I collected lots of recovery driving data:
+
 ![alt text][image4]
+
 ![alt text][image5]
+
 ![alt text][image6]
 
 I also coverted the training images to the same color space as the test environment using:
@@ -112,6 +119,7 @@ I also coverted the training images to the same color space as the test environm
 image = cv2.cvtColor(cv2.imread(current_path),cv2.COLOR_BGR2RGB)
 ```
 Then I used images from left and right cameras to help training. This method was also recommened in the instructions.
+
 ![alt text][image2]
 
 A generator was used to speed up training. I finally randomly shuffled the data set and put Y% of the data into a validation set. So the training data generation now looks like this:
