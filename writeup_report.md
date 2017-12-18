@@ -165,7 +165,7 @@ train_generator = generator(train_samples, batch_size=32)
 validation_generator = generator(validation_samples, batch_size=32)
 ```
 
-At the end of the process, the vehicle is able to drive autonomously around the track while staying in the center of the road. The results is shown in [video.mp4](https://github.com/haoyus/Carnd_Term1_Proj3/blob/master/video.mp4)
+At the end of the process, the vehicle is able to drive autonomously around the track while staying in the center of the road. The results is shown in [video.mp4](https://www.youtube.com/watch?v=kEU_pF6PxdY)
 
 #### 2. Final Model Architecture
 
